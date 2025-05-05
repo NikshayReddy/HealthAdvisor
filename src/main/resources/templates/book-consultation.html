@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Consultation - Cyberpunk Style</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+        body {
+            background-color: #0a0f24;
+            color: #00ff99;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #sidebar {
+            width: 250px;
+            background: #1f1f1f;
+            height: 100vh;
+            position: fixed;
+            left: -250px;
+            transition: 0.3s;
+            padding-top: 50px;
+        }
+        
+        #sidebar.open {
+            left: 0;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+
+        #sidebar ul li:hover {
+            background: #333;
+        }
+
+        h2 {
+            font-size: 2em;
+            text-shadow: 0px 0px 10px #00ff99;
+        }
+
+        form {
+            background: rgba(0, 0, 50, 0.8);
+            padding: 20px;
+            width: 60%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px #00ff99;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.2em;
+            text-shadow: 0px 0px 5px #00ff99;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #02101f;
+            color: #00ff99;
+            border: 2px solid #00ff99;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+            box-shadow: 0px 0px 10px #00ff99;
+        }
+
+        input:focus, select:focus {
+            box-shadow: 0px 0px 20px #00ff99;
+        }
+
+        button {
+            background: #00ff99;
+            color: #02101f;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0px 0px 15px #00ff99;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #02101f;
+            color: #00ff99;
+            box-shadow: 0px 0px 25px #00ff99;
+        }
+
+        .neon-border {
+            border: 2px solid #00ff99;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 10px #00ff99;
+        }
+    </style>
+</head>
+<body>
+    <h2>Book a Cyberpunk Consultation</h2>
+	<div id="sidebar">
+	        <ul>
+	            <li onclick="closeMenuAndNavigate('/login')">Home</li>
+	            <li onclick="closeMenuAndNavigate('/doctors')">Doctors on Board</li>
+	            <li onclick="closeMenuAndNavigate('/bookConsultation')">Book Consultation</li>
+	            <li onclick="closeMenuAndNavigate('/view-appointments')">Upcoming Appointments</li>
+	            <li onclick="closeMenuAndNavigate('/')" style="color: red;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+	        </ul>
+	    </div>
+    <form th:action="@{/bookConsultation}" method="post">
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" name="patientName" th:value="${patientName}" required class="neon-border">
+
+        <label for="patientProblem">Patient Problem:</label>
+        <select id="patientProblem" name="patientProblem" required class="neon-border">
+            <option value="">Select a problem</option>
+            <option value="Cardiology" th:selected="${patientProblem == 'Cardiology'}">Cardiology</option>
+            <option value="Neurology" th:selected="${patientProblem == 'Neurology'}">Neurology</option>
+            <option value="Orthopedics" th:selected="${patientProblem == 'Orthopedics'}">Orthopedics</option>
+            <option value="General Medicine" th:selected="${patientProblem == 'General Medicine'}">General Medicine</option>
+        </select>
+
+        <label for="doctorList">Choose a Doctor:</label>
+        <select id="doctorList" name="doctorList" required class="neon-border">
+            <option value="">Select a doctor</option>
+            <option th:each="doctor : ${doctors}" th:value="${doctor}" th:text="${doctor}" th:selected="${doctor == selectedDoctor}"></option>
+        </select>
+
+        <label for="appointmentDate">Appointment Date:</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" th:value="${appointmentDate}" required class="neon-border">
+
+        <label for="appointmentTime">Appointment Time:</label>
+        <input type="time" id="appointmentTime" name="appointmentTime" th:value="${appointmentTime}" required class="neon-border">
+
+        <button type="submit">Book Appointment</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const problemSelect = document.getElementById("patientProblem");
+            const doctorSelect = document.getElementById("doctorList");
+
+            const doctors = {
+                "Cardiology": ["Dr. Smith", "Dr. Johnson"],
+                "Neurology": ["Dr. Patel", "Dr. Brown"],
+                "Orthopedics": ["Dr. Adams", "Dr. White"],
+                "General Medicine": ["Dr. Lee", "Dr. Taylor"]
+            };
+
+            function updateDoctors() {
+                const selectedProblem = problemSelect.value;
+                doctorSelect.innerHTML = "<option value=''>Select a doctor</option>";
+
+                if (doctors[selectedProblem]) {
+                    doctors[selectedProblem].forEach(doctor => {
+                        let option = document.createElement("option");
+                        option.value = doctor;
+                        option.textContent = doctor;
+                        if (doctor === selectedDoctor) {
+                            option.selected = true;
+                        }
+                        doctorSelect.appendChild(option);
+                    });
+                }
+            }
+
+            let selectedDoctor = "[[${selectedDoctor}]]"; 
+            updateDoctors();
+            problemSelect.addEventListener("change", updateDoctors);
+        });
+
+        function closeMenuAndNavigate(url) {
+            document.getElementById("sidebar").classList.remove("open");
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CareVault Home Page</title>
+    <style>
+		/* Global Styles */
+		body {
+		    margin: 0;
+		    padding: 0;
+		    font-family: 'Poppins', sans-serif;
+		    background: linear-gradient(to right, #fef9e7, #ffedd5);
+		    color: #444;
+		    text-align: center;
+		    height: 100vh;
+		    overflow: hidden; /* No scrolling */
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		/* Header with Logo */
+		.header {
+		    width: 100%;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    background: #e67e22;
+		    padding: 20px;
+		    color: white;
+		    font-size: 2.5em;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		}
+
+		.logo {
+		    height: 80px;
+		    margin-right: 15px;
+		}
+
+		/* Main Content */
+		.container {
+		    width: 90%;
+		    max-width: 1100px;
+		    background: white;
+		    padding: 40px;
+		    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		    text-align: left;
+		    border-radius: 10px;
+		}
+
+		/* Sections */
+		.section {
+		    margin-bottom: 30px;
+		}
+
+		h1, h2 {
+		    color: #d35400;
+		    margin-bottom: 15px;
+		}
+
+		p {
+		    font-size: 1.1em;
+		    color: #555;
+		    line-height: 1.6;
+		}
+
+		/* Call to Action */
+		.cta {
+		    text-align: center;
+		    margin-top: 30px;
+		}
+
+		.cta p {
+		    font-size: 1.2em;
+		    font-weight: bold;
+		}
+
+		.cta-button {
+		    display: inline-block;
+		    padding: 12px 25px;
+		    font-size: 1.2em;
+		    background: #e67e22;
+		    color: white;
+		    text-decoration: none;
+		    border-radius: 5px;
+		    font-weight: bold;
+		    transition: background 0.3s;
+		}
+
+		.cta-button:hover {
+		    background: #d35400;
+		}
+
+		/* Footer */
+		.footer {
+		    width: 100%;
+		    background: #e67e22;
+		    color: white;
+		    padding: 15px;
+		    font-size: 1em;
+		    text-align: center;
+		    position: absolute;
+		    bottom: 0;
+		}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareVault - Secure Elderly Care Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header with Logo -->
+    <div class="header">
+        <img src="images/medical-team.png" alt="CareVault Logo" class="logo">
+        <span>CARE VAULT</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Introduction Section -->
+        <div class="section">
+            <h1>Welcome to CareVault</h1>
+            <p>Your trusted digital companion for managing elderly care efficiently and securely.</p>
+            <p>With CareVault, caregivers and families can ensure a smooth, stress-free experience in managing medical appointments, medications, and emergency contacts.</p>
+        </div>
+
+        <!-- Why Choose CareVault -->
+        <div class="section">
+            <h2>Why Choose CareVault?</h2>
+            <p>✔️ **Effortless Scheduling** – Book and track doctor appointments easily.</p>
+            <p>✔️ **Medication & Expense Tracking** – Never miss a dose or payment.</p>
+            <p>✔️ **Emergency Contact Hub** – Quick access to urgent contacts.</p>
+            <p>✔️ **User-Friendly & Secure** – Designed for simplicity, with strong data protection.</p>
+        </div>
+
+        <!-- Key Features -->
+        <div class="section">
+            <h2>Our Key Features</h2>
+            <p>💊 **Automated Medication Reminders** – Stay on track with prescriptions.</p>
+            <p>📅 **Smart Calendar for Appointments** – Manage doctor visits with ease.</p>
+            <p>📂 **Personalized Records** – Keep track of medical history securely.</p>
+            <p>🔔 **Timely Alerts & Notifications** – Never miss an important update.</p>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section">
+            <h2>What Families Are Saying</h2>
+            <p><em>“CareVault has completely changed how we manage our parents' medical needs. It’s a lifesaver!”</em> - Anna R.</p>
+            <p><em>“Simple, intuitive, and exactly what we needed for elderly care.”</em> - James M.</p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <p>💙 Join thousands of families improving elderly care today.</p>
+            <a href="signup.html" class="cta-button">Get Started</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 CareVault. All Rights Reserved.
+    </div>
+
+</body>
+</html>

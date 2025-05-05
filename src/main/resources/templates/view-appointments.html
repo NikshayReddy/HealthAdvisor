@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Appointments</title>
+    <style>
+        body {
+            background-color: #181818;
+            color: #00ff7f;
+            font-family: Arial, sans-serif;
+        }
+        .appointments {
+            width: 80%;
+            margin: auto;
+            margin-top: 20px;
+        }
+        .appointments table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .appointments th, .appointments td {
+            border: 1px solid #00ff7f;
+            padding: 10px;
+            text-align: center;
+        }
+        .appointments th {
+            background-color: #2d2d2d;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">Appointments</h2>
+
+<div class="appointments">
+    <table>
+        <tr>
+            <th>Patient Name</th>
+            <th>Problem</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        <th:block th:each="consultation : ${consultations}">
+            <tr>
+                <td th:text="${consultation.patientName}"></td>
+                <td th:text="${consultation.patientProblem}"></td>
+                <td th:text="${consultation.doctorAssigned}"></td>
+                <td th:text="${consultation.appointmentDate}"></td>
+                <td th:text="${consultation.appointmentTime}"></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors on Board - CareVault</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script>
+        function toggleMenu() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
+        function closeMenuAndNavigate(url) {
+            document.getElementById("sidebar").classList.remove("open");
+            window.location.href = url;
+        }
+    </script>
+    <style>
+		body {
+		    font-family: Arial, sans-serif;
+		    background-color: #121212;
+		    color: white;
+		    margin: 0;
+		    padding: 0;
+		    display: flex;
+		}
+
+		.menu-icon {
+		    font-size: 24px;
+		    cursor: pointer;
+		    margin: 20px;
+		    position: fixed;
+		    z-index: 1000;
+		}
+
+		#sidebar {
+		    width: 250px;
+		    background: #1f1f1f;
+		    height: 100vh;
+		    position: fixed;
+		    left: -250px;
+		    transition: 0.3s;
+		    padding-top: 50px;
+		}
+
+		#sidebar.open {
+		    left: 0;
+		}
+
+		#sidebar ul {
+		    list-style: none;
+		    padding: 0;
+		}
+
+		#sidebar ul li {
+		    padding: 15px;
+		    cursor: pointer;
+		    border-bottom: 1px solid #333;
+		    text-align: center;
+		}
+
+		#sidebar ul li:hover {
+		    background: #333;
+		}
+
+		.content {
+		    margin-left: 100px; 
+		    padding: 20px;
+		    width: calc(100% - 220px); 
+		}
+
+		.doctors-grid {
+		    display: grid;
+		    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		    gap: 20px;
+		    margin-top: 20px;
+		}
+
+		.doctor-card {
+		    background: #1f1f1f;
+		    padding: 20px;
+		    border-radius: 10px;
+		    text-align: center;
+		    transition: transform 0.3s ease, box-shadow 0.3s ease, margin-left 0.3s ease;
+		}
+
+		.doctor-card img {
+		    width: 80px;
+		    height: 80px; 
+		    border-radius: 50%; 
+		    margin-bottom: 10px;
+		    object-fit: cover; 
+		    object-position: center; 
+		}
+
+		.doctor-card h3 {
+		    color: cyan;
+		}
+
+		.doctor-card p {
+		    margin: 5px 0;
+		}
+
+		.doctor-card:hover {
+		    transform: scale(1.1); 
+		    box-shadow: 0px 4px 20px rgba(0, 255, 255, 0.5); 
+		    margin-left: -10px; 
+		}
+
+		.doctor-card:hover img {
+		    transform: scale(1.1); 
+		}
+    </style>
+</head>
+<body>
+
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div id="sidebar">
+        <ul>
+            <li onclick="closeMenuAndNavigate('/login')">Home</li>
+            <li onclick="closeMenuAndNavigate('/doctors')">Doctors on Board</li>
+            <li onclick="closeMenuAndNavigate('/bookConsultation')">Book Consultation</li>
+            <li onclick="closeMenuAndNavigate('/view-appointments')">Upcoming Appointments</li>
+            <li onclick="closeMenuAndNavigate('/')" style="color: red;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Doctors on Board</h1>
+        <p>Meet our experienced doctors and specialists.</p>
+
+		<div class="doctors-grid">
+		    <div class="doctor-card">
+		        <img src="/images/doctor1.jpeg" alt="Doctor">
+		        <h3>Dr. John Doe</h3>
+		        <p><strong>Specialization:</strong> Pediatrician</p>
+		        <p><strong>Consultation Timings:</strong> 10 AM - 4 PM</p>
+		        <p><strong>Contact:</strong> +1 234 567 890</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor2.jpeg" alt="Doctor">
+		        <h3>Dr. Nikita Sharma</h3>
+		        <p><strong>Specialization:</strong> Neurologist</p>
+		        <p><strong>Consultation Timings:</strong> 9 AM - 3 PM</p>
+		        <p><strong>Contact:</strong> +1 987 654 321</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor3.jpeg" alt="Doctor">
+		        <h3>Dr. Michael Smith</h3>
+		        <p><strong>Specialization:</strong> Dermatologist</p>
+		        <p><strong>Consultation Timings:</strong> 11 AM - 5 PM</p>
+		        <p><strong>Contact:</strong> +1 555 789 123</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor4.jpeg" alt="Doctor">
+		        <h3>Dr. Emily Brown</h3>
+		        <p><strong>Specialization:</strong> Orthopedic</p>
+		        <p><strong>Consultation Timings:</strong> 8 AM - 2 PM</p>
+		        <p><strong>Contact:</strong> +1 666 432 567</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor5.jpeg" alt="Doctor">
+		        <h3>Dr. David Wilson</h3>
+		        <p><strong>Specialization:</strong> Psychiatrist</p>
+		        <p><strong>Consultation Timings:</strong> 1 PM - 6 PM</p>
+		        <p><strong>Contact:</strong> +1 777 654 890</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor6.jpeg" alt="Doctor">
+		        <h3>Dr. Kajal Gupta</h3>
+		        <p><strong>Specialization:</strong> Cardiologist</p>
+		        <p><strong>Consultation Timings:</strong> 9 AM - 3 PM</p>
+		        <p><strong>Contact:</strong> +1 888 345 678</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor7.jpeg" alt="Doctor">
+		        <h3>Dr. Daniel Clark</h3>
+		        <p><strong>Specialization:</strong> Gastroenterologist</p>
+		        <p><strong>Consultation Timings:</strong> 10 AM - 4 PM</p>
+		        <p><strong>Contact:</strong> +1 999 876 543</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor8.jpeg" alt="Doctor">
+		        <h3>Dr. Sophia Anderson</h3>
+		        <p><strong>Specialization:</strong> Endocrinologist</p>
+		        <p><strong>Consultation Timings:</strong> 11 AM - 5 PM</p>
+		        <p><strong>Contact:</strong> +1 111 222 333</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor9.jpeg" alt="Doctor">
+		        <h3>Dr. Ethan Harris</h3>
+		        <p><strong>Specialization:</strong> Oncologist</p>
+		        <p><strong>Consultation Timings:</strong> 12 PM - 6 PM</p>
+		        <p><strong>Contact:</strong> +1 222 333 444</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor10.jpeg" alt="Doctor">
+		        <h3>Dr. Ava Roberts</h3>
+		        <p><strong>Specialization:</strong> Rheumatologist</p>
+		        <p><strong>Consultation Timings:</strong> 9 AM - 2 PM</p>
+		        <p><strong>Contact:</strong> +1 444 555 666</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor11.jpeg" alt="Doctor">
+		        <h3>Dr. William Carter</h3>
+		        <p><strong>Specialization:</strong> Pulmonologist</p>
+		        <p><strong>Consultation Timings:</strong> 8 AM - 1 PM</p>
+		        <p><strong>Contact:</strong> +1 777 888 999</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor12.jpeg" alt="Doctor">
+		        <h3>Dr. Sandhya Ramachandran</h3>
+		        <p><strong>Specialization:</strong> Ophthalmologist</p>
+		        <p><strong>Consultation Timings:</strong> 10 AM - 4 PM</p>
+		        <p><strong>Contact:</strong> +1 666 777 888</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor13.jpeg" alt="Doctor">
+		        <h3>Dr. James Walker</h3>
+		        <p><strong>Specialization:</strong> Urologist</p>
+		        <p><strong>Consultation Timings:</strong> 1 PM - 7 PM</p>
+		        <p><strong>Contact:</strong> +1 333 444 555</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor14.jpeg" alt="Doctor">
+		        <h3>Dr. Charlotte Nelson</h3>
+		        <p><strong>Specialization:</strong> Gynecologist</p>
+		        <p><strong>Consultation Timings:</strong> 9 AM - 3 PM</p>
+		        <p><strong>Contact:</strong> +1 555 666 777</p>
+		    </div>
+		    <div class="doctor-card">
+		        <img src="/images/doctor15.jpeg" alt="Doctor">
+		        <h3>Dr. Henry Adams</h3>
+		        <p><strong>Specialization:</strong> General Physician</p>
+		        <p><strong>Consultation Timings:</strong> 7 AM - 1 PM</p>
+		        <p><strong>Contact:</strong> +1 111 222 999</p>
+		    </div>
+		</div>
+    </div>
+</body>
+</html>
